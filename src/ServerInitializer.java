@@ -5,12 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 
-public class AppInitializer2 extends Application {
+public class ServerInitializer extends Application {
 
 
     public static void main(String[] args) {
@@ -20,10 +19,10 @@ public class AppInitializer2 extends Application {
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("./View/ClientForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("./View/ServerForm.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("client");
+        stage.setTitle("server");
 
 
         stage.show();

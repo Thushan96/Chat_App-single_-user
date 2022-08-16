@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -32,5 +34,17 @@
                 <VBox fx:id="vbox_messages" prefHeight="324.0" prefWidth="593.0" />
             </content>
         </ScrollPane>
+      <Button fx:id="btnAttach" layoutX="528.0" layoutY="412.0" mnemonicParsing="false" onAction="#btnAttachOnAction" style="-fx-background-color: #ffffff;">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/camera.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

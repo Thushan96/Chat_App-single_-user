@@ -9,8 +9,12 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import serverController.ServerFormController;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 public class Client {
 
@@ -44,6 +48,34 @@ public class Client {
         }
 
     }
+
+    public void sendImageToServer(String fileLocation) throws IOException, InterruptedException {
+
+            OutputStream outputStream = socket.getOutputStream();
+
+            BufferedImage image = ImageIO.read(new File(fileLocation));
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", byteArrayOutputStream);
+
+            byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+            outputStream.write(size);
+            System.out.println(size);
+            System.out.println(Arrays.toString(byteArrayOutputStream.toByteArray()));
+            outputStream.write(byteArrayOutputStream.toByteArray());
+            outputStream.flush();
+            System.out.println("Flushed: " + System.currentTimeMillis());
+
+            System.out.println("Closing: " + System.currentTimeMillis());
+            closeEverything(socket,bufferedReader,bufferedWriter);
+
+
+
+    }
+
+
+
+
 
     public void receiveMessageFromServer(VBox vBox){
         new Thread(new Runnable() {
